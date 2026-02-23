@@ -2,7 +2,8 @@ name: Python CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -15,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -24,12 +25,14 @@ jobs:
         run: pytest
 
   deploy:
-  runs-on: ubuntu-latest
-  needs: test
+    runs-on: ubuntu-latest
+    needs: test
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Deploy application
-      run: echo "Application deployed successfully "
+      - name: Dummy deployment
+        run: |
+          echo "Starting deployment..."
+          echo "Application deployed successfully "
